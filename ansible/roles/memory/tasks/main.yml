@@ -1,0 +1,6 @@
+---
+- name: copy zram-generator configuration
+  copy:
+    src: zram-generator.conf
+    dest: /etc/systemd/zram-generator.conf
+    mode: 0644

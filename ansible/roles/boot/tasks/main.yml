@@ -1,0 +1,32 @@
+---
+- name: correct btrfs mount options
+  ansible.builtin.replace:
+    regexp: 'rw\S+subvol=(\S+)'
+    replace: 'subvol=\1,defaults,compress=zstd'
+    path: /etc/fstab
+
+- name: mount default subvolume as root
+  ansible.builtin.replace:
+    regexp: 'subvol=/?@/.snapshots/1/snapshot,'
+    path: /etc/fstab
+
+- name: ensure /tmp mountpoint is present in /etc/fstab
+  ansible.posix.mount:
+    path: /tmp
+    src: tmpfs
+    fstype: tmpfs
+    opts: defaults,noatime,mode=1777
+    state: present
+
+- name: enable splash screen in grub
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
+  notify:
+    - regenerate grub config
+
+- import_tasks: luks.yml
+
+- name: install grub
+  ansible.builtin.command: grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=debian

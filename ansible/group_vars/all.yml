@@ -1,0 +1,3 @@
+---
+debian_release: "bullseye"
+backported_hardware_stack: false

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+    - apt
+    - snapper
+    - desktop
+    - memory
+    - network
+    - samba
+    - boot

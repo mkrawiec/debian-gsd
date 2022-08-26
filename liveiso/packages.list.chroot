@@ -1,0 +1,23 @@
+# base
+ca-certificates
+dbus
+sudo
+user-setup
+
+# firmware
+amd64-microcode
+firmware-iwlwifi
+firmware-linux-free
+firmware-linux-nonfree
+intel-microcode
+
+# util
+arch-install-scripts
+btrfs-progs
+connman
+cryptsetup
+curl
+debootstrap
+dosfstools
+wpasupplicant
+xfsprogs

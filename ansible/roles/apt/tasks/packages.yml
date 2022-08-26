@@ -1,0 +1,75 @@
+---
+- name: install hardware stack
+  ansible.builtin.apt:
+    state: present
+    pkg:
+    - amd64-microcode
+    - firmware-iwlwifi
+    - firmware-linux
+    - intel-microcode
+    - linux-image-amd64
+    default_release: "{{ backported_hardware_stack | ternary(debian_release + '-backports', debian_release) }}"
+
+- name: install packages
+  ansible.builtin.apt:
+    state: present
+    pkg:
+    - adw-gtk-theme
+    - avahi-daemon
+    - bash-completion
+    - bluez
+    - btrfs-progs
+    - btrfsmaintenance
+    - cryptsetup-initramfs
+    - cups
+    - cups-pk-helper
+    - distrobox
+    - earlyoom
+    - ffmpegthumbnailer
+    - fonts-iosevka
+    - fonts-noto
+    - fonts-noto-color-emoji
+    - fwupd-amd64-signed
+    - gdm3
+    - gnome-control-center
+    - gnome-disk-utility
+    - gnome-online-accounts
+    - gnome-session
+    - gnome-software
+    - gnome-software-plugin-flatpak
+    - gnome-system-monitor
+    - gnome-terminal
+    - grub-btrfs
+    - grub-efi-amd64-signed
+    - gvfs-backends
+    - libblockdev-crypto2 # unlock encrypted drives from nautilus
+    - libcanberra-pulse # gnome-control-center sound panel
+    - libgdk-pixbuf2.0-bin # nautilus thumbnails
+    - libpam-gnome-keyring # auto-unlock keyring
+    - libspa-0.2-bluetooth
+    - locales
+    - malcontent # gnome-control-center applications panel
+    - nautilus
+    - nautilus-share
+    - network-manager
+    - network-manager-openvpn-gnome
+    - openssh-client
+    - pipewire-pulse
+    - plymouth-themes
+    - powermgmt-base # for unattended-upgrades
+    - powertop
+    - samba
+    - shim-signed
+    - smartmontools
+    - snapper
+    - sudo
+    - systemd-timesyncd
+    - systemd-zram-generator
+    - tlp-rdw
+    - uidmap # distrobox, creating new boxes
+    - unattended-upgrades
+    - unzip
+    - wireplumber
+    - xdg-desktop-portal-gtk
+    - xdg-user-dirs-gtk
+    - xfsprogs

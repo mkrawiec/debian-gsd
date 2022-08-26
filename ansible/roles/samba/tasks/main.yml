@@ -1,0 +1,11 @@
+---
+- name: set correct user groups
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: sambashare
+    append: yes
+
+- name: copy samba configuration
+  ansible.builtin.copy:
+    src: smb.conf
+    dest: /etc/samba/smb.conf
