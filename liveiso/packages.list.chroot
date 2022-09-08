@@ -12,6 +12,7 @@ firmware-linux-nonfree
 intel-microcode
 
 # util
+bash-completion
 arch-install-scripts
 btrfs-progs
 connman
