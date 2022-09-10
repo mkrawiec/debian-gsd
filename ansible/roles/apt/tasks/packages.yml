@@ -39,7 +39,6 @@
     - gnome-software-plugin-flatpak
     - gnome-system-monitor
     - gnome-terminal
-    - grub-btrfs
     - grub-efi-amd64
     - grub-efi-amd64-signed
     - gvfs-backends
@@ -74,3 +73,8 @@
     - xdg-desktop-portal-gtk
     - xdg-user-dirs-gtk
     - xfsprogs
+
+# needs to be installed after grub package
+- name: install grub btrfs
+  ansible.builtin.apt:
+    name: grub-btrfs
