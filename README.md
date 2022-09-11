@@ -8,12 +8,12 @@
 
 ## Introduction
 
-This project strives to deliver simple, rock-solid desktop workstation install. It's dedicated to advanced linux users - developers, sysadmins and enthusiasts.
+This project is set of configuration and tools for Debian Stable. It strives to deliver rock-solid and refined desktop workstation install. It's dedicated to advanced linux users - developers, sysadmins and enthusiasts.
 
 ## Features
 
-- Minimal Debian Stable base, adapted as a plaform for running podman containers ([distrobox](https://github.com/89luca89/distrobox) included) and flatpak applications
-- Automatic Btrfs snapshots and ability to boot read-only snapshots from the bootloader
+- Small Debian Stable base, adapted as a platform for running flatpaks and containers. Additionally [distrobox](https://github.com/89luca89/distrobox) comes preinstalled as a containerized environment for everyday software development. This creates a mix of rock-solid stable base and updated applications.
+- Automatic Btrfs snapshots (via apt and snapper) and ability to boot read-only snapshots from the bootloader
 - GNOME Desktop experience, that's close to stock, but with [refined defaults](ansible/roles/desktop/files/01-desktop-settings)
 - Extras enabled by default - wireplumber, systemd-resolved, swap on zram, oom killer
 - Backports and non-free repos enabled by default
