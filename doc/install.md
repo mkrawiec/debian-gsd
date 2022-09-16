@@ -12,6 +12,8 @@ To be able to complete the setup, target machine must meet the requirements:
 - At least 20 GB of disk space
 - Network connectivity
 
+🆙 If you plan to test the install in virtual machine, make sure that UEFI support is enabled first (In VirtualBox - check _"Enable EFI (special OSes only)"_ option, in libvirt/GNOME Boxes - replace `<os>` with `<os firmware="efi">` in configuration xml file)
+
 ## Boot
 
 After booting the machine from live media, first become root user.
@@ -86,9 +88,9 @@ Before we can bootstrap and chroot to the system, we need to create correct moun
 ```
 live# ./bootstrap/create_subvolumes.sh $dev_root /mnt
 live# ./bootstrap/mount_root.sh $dev_root /mnt
-live# mount $dev_uefi /mnt
-live# mount $dev_var /mnt
-live# mount $dev_home /mnt
+live# mount $dev_efi /mnt/boot/efi
+live# mount $dev_var /mnt/var
+live# mount $dev_home /mnt/home
 ```
 
 ## Debootstrap
