@@ -1,40 +1,40 @@
 ---
-- name: lookup keyfiles
+- name: Lookup keyfiles
   ansible.builtin.find:
     paths: /etc/keys
-    patterns: '*.key'
+    patterns: "*.key"
   register: keyfiles
 
-- name: enable disk encryption
+- name: Enable disk encryption
   block:
-  - name: enable grub luks support
-    ansible.builtin.lineinfile:
-      path: /etc/default/grub
-      regexp: '^GRUB_ENABLE_CRYPTODISK='
-      line: 'GRUB_ENABLE_CRYPTODISK=y'
-    notify:
-    - regenerate grub config
+    - name: Enable grub luks support
+      ansible.builtin.lineinfile:
+        path: /etc/default/grub
+        regexp: ^GRUB_ENABLE_CRYPTODISK=
+        line: GRUB_ENABLE_CRYPTODISK=y
+      notify:
+        - Regenerate grub config
 
-  - name: secure permissions for keyfiles
-    ansible.builtin.file:
-      path: "{{ item.path }}"
-      state: file
-      mode: '0400'
-    with_items: "{{ keyfiles.files }}"
+    - name: Secure permissions for keyfiles
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: file
+        mode: "0400"
+      with_items: "{{ keyfiles.files }}"
 
-  - name: change permission policy for initramfs
-    ansible.builtin.lineinfile:
-      path: /etc/initramfs-tools/initramfs.conf
-      regexp: '^UMASK='
-      line: 'UMASK=0077'
-    notify:
-    - regenerate initramfs
+    - name: Change permission policy for initramfs
+      ansible.builtin.lineinfile:
+        path: /etc/initramfs-tools/initramfs.conf
+        regexp: ^UMASK=
+        line: UMASK=0077
+      notify:
+        - Regenerate initramfs
 
-  - name: setup keyfile pattern for initramfs
-    ansible.builtin.lineinfile:
-      path: /etc/cryptsetup-initramfs/conf-hook
-      regexp: '^KEYFILE_PATTERN='
-      line: 'KEYFILE_PATTERN="/etc/keys/*.key"'
-    notify:
-    - regenerate initramfs
+    - name: Setup keyfile pattern for initramfs
+      ansible.builtin.lineinfile:
+        path: /etc/cryptsetup-initramfs/conf-hook
+        regexp: ^KEYFILE_PATTERN=
+        line: KEYFILE_PATTERN="/etc/keys/*.key"
+      notify:
+        - Regenerate initramfs
   when: keyfiles.files | length > 0

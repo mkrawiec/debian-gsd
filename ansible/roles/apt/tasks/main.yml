@@ -1,47 +1,50 @@
 ---
-- name: copy apt sources list
+- name: Copy apt sources list
   ansible.builtin.copy:
     src: sources.list
     dest: /etc/apt/sources.list
+    mode: "0644"
 
-- name: import custom obs repo key
+- name: Import custom obs repo key
   ansible.builtin.apt_key:
     url: https://download.opensuse.org/repositories/home:/mkrwc:/debian/Debian_11/Release.key
     state: present
 
-- name: add obs custom repo
+- name: Add obs custom repo
   ansible.builtin.apt_repository:
     repo: deb https://download.opensuse.org/repositories/home:/mkrwc:/debian/Debian_11 ./
     filename: obs-mkrwc-debian
     state: present
 
-- name: update repos
+- name: Update repos
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
 
-- name: run dist upgrade
+- name: Run dist upgrade
   ansible.builtin.apt:
     upgrade: dist
 
-- name: disable apt recommends and suggests
+- name: Disable apt recommends and suggests
   ansible.builtin.blockinfile:
     path: /etc/apt/apt.conf.d/01norecommend
-    create: yes
+    create: true
     block: |
       APT::Install-Suggests "0";
       APT::Install-Recommends "0";
+    mode: "0644"
 
-- name: create /usr/lib/sysimage directory
+- name: Create /usr/lib/sysimage directory
   ansible.builtin.file:
     path: /usr/lib/sysimage
     state: directory
+    mode: "0755"
 
-- name: relocate dpkg files to /usr for rollbacks
+- name: Relocate dpkg files to /usr for rollbacks
   ansible.builtin.command: mv /var/lib/dpkg /usr/lib/sysimage/
   args:
     creates: /usr/lib/sysimage/dpkg
 
-- name: symlink to new dpkg location
+- name: Symlink to new dpkg location
   ansible.builtin.file:
     src: /usr/lib/sysimage/dpkg
     dest: /var/lib/dpkg

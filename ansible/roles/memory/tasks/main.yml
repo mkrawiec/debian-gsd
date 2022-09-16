@@ -1,6 +1,6 @@
 ---
-- name: copy zram-generator configuration
-  copy:
+- name: Copy zram-generator configuration
+  ansible.builtin.copy:
     src: zram-generator.conf
     dest: /etc/systemd/zram-generator.conf
-    mode: 0644
+    mode: "0644"

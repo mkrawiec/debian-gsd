@@ -1,59 +1,62 @@
 ---
-- name: set correct user groups
+- name: Set correct user groups
   ansible.builtin.user:
     name: "{{ username }}"
     groups: sudo
-    append: yes
+    append: true
 
-- name: add flathub remote
+- name: Add flathub remote
   community.general.flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
-- name: install flatpaks
+- name: Install flatpaks
   community.general.flatpak:
     name: "{{ item }}"
     state: present
   with_items:
-  - com.mattjakeman.ExtensionManager
-  - org.gnome.Calculator
-  - org.gnome.Calendar
-  - org.gnome.Evince
-  - org.gnome.Extensions
-  - org.gnome.FileRoller
-  - org.gnome.FontManager
-  - org.gnome.Geary
-  - org.gnome.PowerStats
-  - org.gnome.TextEditor
-  - org.gnome.Totem
-  - org.gnome.eog
-  - org.mozilla.firefox
-  - org.gtk.Gtk3theme.adw-gtk3
-  - org.gtk.Gtk3theme.adw-gtk3-dark
+    - com.mattjakeman.ExtensionManager
+    - org.gnome.Calculator
+    - org.gnome.Calendar
+    - org.gnome.Evince
+    - org.gnome.Extensions
+    - org.gnome.FileRoller
+    - org.gnome.FontManager
+    - org.gnome.Geary
+    - org.gnome.PowerStats
+    - org.gnome.TextEditor
+    - org.gnome.Totem
+    - org.gnome.eog
+    - org.mozilla.firefox
+    - org.gtk.Gtk3theme.adw-gtk3
+    - org.gtk.Gtk3theme.adw-gtk3-dark
 
-- name: create dconf directories
+- name: Create dconf directories
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
+    mode: "0755"
   with_items:
     - /etc/dconf/db/local.d
     - /etc/dconf/profile
 
-- name: create dconf user profile
+- name: Create dconf user profile
   ansible.builtin.blockinfile:
     path: /etc/dconf/profile/user
-    create: yes
+    create: true
+    mode: "0644"
     block: |
       user-db:user
       system-db:local
 
-- name: copy default desktop settings
+- name: Copy default desktop settings
   ansible.builtin.copy:
     src: 01-desktop-settings
     dest: /etc/dconf/db/local.d/01-desktop-settings
+    mode: "0644"
 
-- name: update system dconf db
+- name: Update system dconf db
   ansible.builtin.command:
     cmd: dconf update
     creates: /etc/dconf/db/local

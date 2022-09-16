@@ -1,0 +1,35 @@
+---
+name: Build and release live ISO image
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version"
+        required: true
+jobs:
+  build-liveiso:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Create build environment
+        uses: docker/build-push-action@v3
+        with:
+          tags: debian-gsd:latest
+          context: ./liveiso
+          push: false
+
+      - name: Run build script
+        uses: addnab/docker-run-action@v3
+        with:
+          image: debian-gsd:latest
+          options: --privileged -v ${{ github.workspace }}/out:/image/out
+          run: /image/build.sh
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ inputs.version }}
+          tag_name: liveiso-${{ inputs.version }}
+          files: out/debian-gsd-amd64.hybrid.iso

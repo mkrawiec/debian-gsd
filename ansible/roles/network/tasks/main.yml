@@ -1,19 +1,21 @@
 ---
-- name: set a hostname
+- name: Set a hostname
   ansible.builtin.copy:
     content: "{{ hostname }}"
     dest: /etc/hostname
+    mode: "0644"
 
-- name: symlink /etc/resolv.conf on next boot
+- name: Symlink /etc/resolv.conf on next boot
   ansible.builtin.copy:
     src: symlink-stub-resolv.conf
     dest: /etc/tmpfiles.d/symlink-stub-resolv.conf
+    mode: "0644"
 
-- name: add resolve to hosts in nsswitch.conf
+- name: Add resolve to hosts in nsswitch.conf
   ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf
-    regexp: '^hosts:'
-    line: 'hosts:  	files mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
+    regexp: "^hosts:"
+    line: "hosts:          files mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns"
 
-- name: enable systemd-resolved
+- name: Enable systemd-resolved
   ansible.builtin.systemd: name=systemd-resolved enabled=yes

@@ -1,41 +1,45 @@
 ---
-- name: copy first snapshot metadata
+- name: Copy first snapshot metadata
   ansible.builtin.template:
     src: files/info.xml.j2
     dest: /.snapshots/1/info.xml
-    mode: '0600'
-    force: no
+    mode: "0600"
+    force: false
   vars:
     date_utc: "{{ now(utc=True, fmt='%Y-%m-%d %H:%M:%S') }}"
 
-- name: ensure correct permissions on /.snapshots
+- name: Ensure correct permissions on /.snapshots
   ansible.builtin.file:
     path: /.snapshots
     owner: root
     group: root
-    mode: '0750'
+    mode: "0750"
 
-- name: enable btrfs quota support
+- name: Enable btrfs quota support
   ansible.builtin.command: btrfs quota enable /
+  changed_when: false
 
-- name: create qgroup for cleanup algorithms
+- name: Create qgroup for cleanup algorithms
   ansible.builtin.command: btrfs qgroup create 1/0 /
-  ignore_errors: true
+  register: qgroup_result
+  changed_when: qgroup_result.rc == 1
+  failed_when: false
 
-- name: init snapper config
+- name: Init snapper config
   ansible.builtin.copy:
     src: /etc/snapper/config-templates/default
     dest: /etc/snapper/configs/root
-    force: no
+    force: false
+    mode: "0644"
 
-- name: set qgroup for snapper cleanup algorithms
+- name: Set qgroup for snapper cleanup algorithms
   ansible.builtin.lineinfile:
     path: /etc/snapper/configs/root
-    regexp: '^QGROUP='
-    line: 'QGROUP="1/0"'
+    regexp: ^QGROUP=
+    line: QGROUP="1/0"
 
-- name: enable root snapper configuration
+- name: Enable root snapper configuration
   ansible.builtin.lineinfile:
     path: /etc/default/snapper
-    regexp: '^SNAPPER_CONFIGS='
-    line: 'SNAPPER_CONFIGS="root"'
+    regexp: ^SNAPPER_CONFIGS=
+    line: SNAPPER_CONFIGS="root"

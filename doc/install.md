@@ -43,7 +43,7 @@ After identifying target disk, make sure that it has GPT partition table. In ord
 live# fdisk /dev/<disk>
 ```
 
-Press *(g)* to create gpt partition table, then *(w)* to write to disk
+Press _(g)_ to create gpt partition table, then _(w)_ to write to disk
 
 Then run `cfdisk`, to start partitioning the disk.
 
@@ -53,10 +53,10 @@ live# cfdisk /dev/<disk>
 
 ### Recommended schema
 
-The table below shows recommended partition layout. It assumes that the target disk is `/dev/sda`, so it should be adapted to the disk name. For convenience when running commands from the doc, you can export the values form the column *Partition variable* (e.g. `export dev_root=/dev/sda1`).
+The table below shows recommended partition layout. It assumes that the target disk is `/dev/sda`, so it should be adapted to the disk name. For convenience when running commands from the doc, you can export the values form the column _Partition variable_ (e.g. `export dev_root=/dev/sda1`).
 
 | Partition variable | Value w/o disk encryption | Value with disc encryption | Size                             |
-|--------------------|---------------------------|----------------------------|----------------------------------|
+| ------------------ | ------------------------- | -------------------------- | -------------------------------- |
 | `$dev_root`        | /dev/sda1                 | /dev/mapper/root           | Minimum 5GB, recommended 20-50GB |
 | `$dev_efi`         | /dev/sda2                 | /dev/sda2                  | 100-500MB                        |
 | `$dev_var`         | /dev/sda3                 | /dev/mapper/var            | Minimum 5GB, recommended >50GB   |
@@ -66,7 +66,7 @@ This is how it looks in `cfdisk`:
 
 ![finished partitioning](https://user-images.githubusercontent.com/142805/189527491-30371b9c-1de1-48ec-81f2-2d5928e7da3c.png)
 
-🆙 Note that efi partition is of type *EFI System*, this is important for correct identification of EFI partition on running system.
+🆙 Note that efi partition is of type _EFI System_, this is important for correct identification of EFI partition on running system.
 
 ## Format the partitions
 
