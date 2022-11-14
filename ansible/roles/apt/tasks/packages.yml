@@ -49,6 +49,7 @@
       - libspa-0.2-bluetooth
       - locales
       - malcontent # gnome-control-center applications panel
+      - mesa-utils
       - nautilus
       - nautilus-share
       - network-manager
@@ -69,12 +70,25 @@
       - uidmap # distrobox, creating new boxes
       - unattended-upgrades
       - unzip
-      - wireplumber
       - xdg-desktop-portal-gtk
       - xdg-user-dirs-gtk
       - xfsprogs
+
+- name: Install backported packages
+  ansible.builtin.apt:
+    state: present
+    pkg:
+      - pipewire-pulse
+      - wireplumber
+    default_release: "{{ debian_release + '-backports' }}"
 
 # needs to be installed after grub package
 - name: Install grub btrfs
   ansible.builtin.apt:
     name: grub-btrfs
+
+# installed separately since 3rd party server can fail
+- name: Install grub btrfs
+  ansible.builtin.apt:
+    name: ttf-mscorefonts-installer
+  failed_when: false
