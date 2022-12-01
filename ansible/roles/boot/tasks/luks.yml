@@ -6,6 +6,7 @@
   register: keyfiles
 
 - name: Enable disk encryption
+  when: keyfiles.files | length > 0
   block:
     - name: Enable grub luks support
       ansible.builtin.lineinfile:
@@ -37,4 +38,3 @@
         line: KEYFILE_PATTERN="/etc/keys/*.key"
       notify:
         - Regenerate initramfs
-  when: keyfiles.files | length > 0

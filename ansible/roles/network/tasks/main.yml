@@ -18,4 +18,6 @@
     line: "hosts:          files mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns"
 
 - name: Enable systemd-resolved
-  ansible.builtin.systemd: name=systemd-resolved enabled=yes
+  ansible.builtin.systemd:
+    name: systemd-resolved
+    enabled: true

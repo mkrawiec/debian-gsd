@@ -50,4 +50,5 @@
     dest: /var/lib/dpkg
     state: link
 
-- import_tasks: packages.yml
+- name: Import package tasks
+  ansible.builtin.import_tasks: packages.yml

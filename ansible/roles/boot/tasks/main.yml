@@ -26,7 +26,8 @@
   notify:
     - Regenerate grub config
 
-- import_tasks: luks.yml
+- name: Import luks configuration tasks
+  ansible.builtin.import_tasks: luks.yml
 
 - name: Install grub
   ansible.builtin.command: grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=debian
