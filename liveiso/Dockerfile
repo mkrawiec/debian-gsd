@@ -7,7 +7,7 @@ RUN apt-get install --no-install-recommends -y live-build
 RUN mkdir /image
 WORKDIR /image
 RUN lb config \
-  --archive-areas "main contrib non-free" \
+  --archive-areas "main contrib non-free non-free-firmware" \
   --firmware-chroot false \
   --image-name debian-gsd \
   --distribution sid \
