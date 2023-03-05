@@ -7,12 +7,12 @@
 
 - name: Import custom obs repo key
   ansible.builtin.apt_key:
-    url: https://download.opensuse.org/repositories/home:/mkrwc:/debian/Debian_11/Release.key
+    url: "https://download.opensuse.org/repositories/home:/mkrwc:/debian/{{ debian_release }}/Release.key"
     state: present
 
 - name: Add obs custom repo
   ansible.builtin.apt_repository:
-    repo: deb https://download.opensuse.org/repositories/home:/mkrwc:/debian/Debian_11 ./
+    repo: "deb https://download.opensuse.org/repositories/home:/mkrwc:/debian/{{ debian_release }} ./"
     filename: obs-mkrwc-debian
     state: present
 

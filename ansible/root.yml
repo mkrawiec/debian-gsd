@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Apply debian-gsd rules
+  hosts: all
   roles:
     - apt
     - snapper
