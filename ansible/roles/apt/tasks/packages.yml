@@ -82,10 +82,13 @@
       - wireplumber
     default_release: "{{ debian_release + '-backports' }}"
 
-# needs to be installed after grub package
-- name: Install grub btrfs
+# need to be installed after grub package
+- name: Install grub snapshots/rollback support
   ansible.builtin.apt:
-    name: grub-btrfs
+    state: present
+    pkg:
+      - grub-btrfs
+      - siduction-btrfs
 
 # installed separately since 3rd party server can fail
 - name: Install grub btrfs
