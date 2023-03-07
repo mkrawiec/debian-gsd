@@ -1,0 +1,5 @@
+version=4
+
+# GitHub hosted projects
+opts=dversionmangle=s/\+ds$//,repacksuffix=+ds,filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/$1\.tar\.gz/ \
+ https://github.com/be5invis/Iosevka/tags .*/v?(\d\S*)\.tar\.gz

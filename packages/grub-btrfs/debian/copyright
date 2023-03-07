@@ -1,0 +1,17 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: grub-btrfs
+Source: https://github.com/Antynea/grub-btrfs
+
+Files: *
+Copyright:
+ Copyright 2014-2022 Antynea <anty_fab@hotmail.fr>
+License: GPL-3
+
+Files: debian/*
+Copyright: 2022 Carsten Boeving <re4son@kali.org>
+License: GPL-3
+Comment: Debian packaging is licensed under the same terms as upstream
+
+License: GPL-3
+ On Debian systems, the complete text of the GPL-3 can be found in
+ /usr/share/common-licenses/GPL-3.

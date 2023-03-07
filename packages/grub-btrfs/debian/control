@@ -1,0 +1,17 @@
+Source: grub-btrfs
+Section: utils
+Priority: optional
+Maintainer: Kali Developers <devel@kali.org>
+Uploaders: Carsten Boeving <re4son@kali.org>, Arnaud Rebillout <arnaudr@kali.org>
+Rules-Requires-Root: no
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/Antynea/grub-btrfs
+Vcs-Git: https://gitlab.com/kalilinux/packages/grub-btrfs.git
+Vcs-Browser: https://gitlab.com/kalilinux/packages/grub-btrfs
+
+Package: grub-btrfs
+Architecture: all
+Depends: ${misc:Depends}, btrfs-progs, grub2-common, gawk, inotify-tools
+Description: Adds "btrfs snapshots" to the grub menu
+ This package improves grub by adding "btrfs snapshots" to the grub menu

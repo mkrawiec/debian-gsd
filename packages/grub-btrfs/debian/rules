@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --buildsystem=none
+
+override_dh_auto_install:
+	install -D -m 0755 41_snapshots-btrfs debian/grub-btrfs/etc/grub.d/41_snapshots-btrfs
+	install -D -m 0755 grub-btrfsd debian/grub-btrfs/bin/grub-btrfsd
+	install -D -m 0644 config debian/grub-btrfs/etc/default/grub-btrfs/config
+	# Remove the shebang, this file is meant to be sourced
+	sed -i '1 s/^#!.*//' debian/grub-btrfs/etc/default/grub-btrfs/config
+	sed -i '1 s;^#!/bin/sh;#!/usr/bin/bash;' debian/grub-btrfs/bin/grub-btrfsd
+
+override_dh_installsystemd:
+	dh_installsystemd --name=grub-btrfsd

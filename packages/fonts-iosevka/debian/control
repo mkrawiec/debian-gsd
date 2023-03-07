@@ -1,0 +1,16 @@
+Source: fonts-iosevka
+Section: fonts
+Priority: optional
+Maintainer: Maciej Krawiec <maciek@unknown>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.0
+Homepage: https://github.com/be5invis/Iosevka
+Rules-Requires-Root: no
+
+Package: fonts-iosevka
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Slender typeface for code, from code
+ This typeface contains 9 weights (Thin to Heavy) alongside with both italic
+ and oblique versions, with the same metrics as the regular one.

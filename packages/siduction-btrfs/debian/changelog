@@ -1,0 +1,19 @@
+siduction-btrfs (0.1.0-gsd1) stable; urgency=medium
+
+  * Import as debian-gsd package
+
+ -- Maciek Krawiec <142805+mkrawiec@users.noreply.github.com>  Mon, 06 Mar 2023 19:00:06 +0100
+
+siduction-btrfs (0.1.0-2) unstable; urgency=medium
+
+  [ Axel Konrad ]
+  * Move the / filesystem type test into test-btrfs-default.sh
+
+ -- Torsten Wohlfarth <towo@siduction.org>  Wed, 01 Mar 2023 11:35:26 +0100
+
+siduction-btrfs (0.1.0-1) unstable; urgency=low
+
+  * Added test for root filesystem type
+  * Initial release.
+
+ -- Axel Konrad <emma-konrad@web.de>  Mon, 27 Feb 2023 14:35:42 +0100

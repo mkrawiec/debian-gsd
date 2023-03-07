@@ -1,0 +1,18 @@
+grub-btrfs (4.12-gsd1) stable; urgency=medium
+
+  * Import as debian-gsd pacakge
+  * Update upstream version
+
+ -- Maciek Krawiec <142805+mkrawiec@users.noreply.github.com>  Mon, 06 Mar 2023 22:59:36 +0100
+
+grub-btrfs (4.11-0kali2) kali-dev; urgency=medium
+
+  * Depend on grub2-common not grub-common
+
+ -- Steev Klimaszewski <steev@kali.org>  Tue, 01 Nov 2022 23:19:46 -0500
+
+grub-btrfs (4.11-0kali1) kali-dev; urgency=medium
+
+  * Initial release. Closes: #941627
+
+ -- Carsten Boeving <re4son@kali.org>  Fri, 04 Feb 2022 17:55:12 +0700
