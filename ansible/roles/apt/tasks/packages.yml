@@ -5,6 +5,8 @@
     pkg:
       - amd64-microcode
       - firmware-iwlwifi
+      - firmware-realtek
+      - firmware-atheros
       - firmware-linux
       - intel-microcode
       - linux-image-amd64
@@ -55,7 +57,6 @@
       - network-manager
       - network-manager-openvpn-gnome
       - openssh-client
-      - pipewire-pulse
       - plymouth-themes
       - powermgmt-base # for unattended-upgrades
       - powertop
@@ -91,7 +92,7 @@
       - siduction-btrfs
 
 # installed separately since 3rd party server can fail
-- name: Install grub btrfs
+- name: Install ms core fonts
   ansible.builtin.apt:
     name: ttf-mscorefonts-installer
   failed_when: false
