@@ -1,5 +1,5 @@
 ---
-- name: Copy first snapshot metadata
+- name: Fill metadata of the current snapshot
   ansible.builtin.template:
     src: files/info.xml.j2
     dest: /.snapshots/1/info.xml
@@ -43,3 +43,8 @@
     path: /etc/default/snapper
     regexp: ^SNAPPER_CONFIGS=
     line: SNAPPER_CONFIGS="root"
+
+- name: Enable btrfsmaintenance timers
+  ansible.builtin.command: /usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh systemd-timer
+  args:
+    creates: /etc/systemd/system/timers.target.wants/btrfs-scrub.timer

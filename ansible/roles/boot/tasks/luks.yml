@@ -13,8 +13,6 @@
         path: /etc/default/grub
         regexp: ^GRUB_ENABLE_CRYPTODISK=
         line: GRUB_ENABLE_CRYPTODISK=y
-      notify:
-        - Regenerate grub config
 
     - name: Secure permissions for keyfiles
       ansible.builtin.file:
@@ -28,13 +26,9 @@
         path: /etc/initramfs-tools/initramfs.conf
         regexp: ^UMASK=
         line: UMASK=0077
-      notify:
-        - Regenerate initramfs
 
     - name: Setup keyfile pattern for initramfs
       ansible.builtin.lineinfile:
         path: /etc/cryptsetup-initramfs/conf-hook
         regexp: ^KEYFILE_PATTERN=
         line: KEYFILE_PATTERN="/etc/keys/*.key"
-      notify:
-        - Regenerate initramfs

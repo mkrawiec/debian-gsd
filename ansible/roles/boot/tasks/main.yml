@@ -23,12 +23,20 @@
     path: /etc/default/grub
     regexp: ^GRUB_CMDLINE_LINUX_DEFAULT=
     line: GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
-  notify:
-    - Regenerate grub config
 
 - name: Import luks configuration tasks
   ansible.builtin.import_tasks: luks.yml
 
+- name: Regenerate initramfs
+  ansible.builtin.command: update-initramfs -u
+  changed_when: false
+
 - name: Install grub
   ansible.builtin.command: grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=debian
+  changed_when: false
+
+- name: Regenerate grub config
+  ansible.builtin.command: update-grub2
+  args:
+    chdir: /  # bug in siduction-btrfs, resolves subvolumes to relative paths
   changed_when: false

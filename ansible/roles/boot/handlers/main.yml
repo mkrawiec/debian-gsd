@@ -1,6 +1,0 @@
----
-- name: Regenerate grub config
-  ansible.builtin.command: update-grub2
-
-- name: Regenerate initramfs
-  ansible.builtin.command: update-initramfs -u
