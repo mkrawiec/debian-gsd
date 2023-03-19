@@ -96,7 +96,7 @@ live# mount $dev_home /mnt/home
 ## Debootstrap
 
 ```
-live# debootstrap bullseye /mnt https://deb.debian.org/debian/
+live# debootstrap bookworm /mnt https://deb.debian.org/debian/
 live# genfstab /mnt > /mnt/etc/fstab
 live# cp -a . /mnt/opt/debian-gsd
 ```

@@ -42,7 +42,7 @@
       - gnome-software
       - gnome-software-plugin-flatpak
       - gnome-system-monitor
-      - gnome-terminal
+      - gnome-console
       - grub-efi-amd64
       - grub-efi-amd64-signed
       - gvfs-backends
@@ -59,6 +59,7 @@
       - network-manager
       - network-manager-openvpn-gnome
       - openssh-client
+      - pipewire-pulse
       - plymouth-themes
       - powermgmt-base # for unattended-upgrades
       - powertop
@@ -67,23 +68,24 @@
       - smartmontools
       - snapper
       - sudo
+      - systemd-resolved
       - systemd-timesyncd
       - systemd-zram-generator
       - tlp-rdw
       - uidmap # distrobox, creating new boxes
       - unattended-upgrades
       - unzip
+      - wireplumber
       - xdg-desktop-portal-gtk
       - xdg-user-dirs-gtk
       - xfsprogs
 
-- name: Install backported packages
-  ansible.builtin.apt:
-    state: present
-    pkg:
-      - pipewire-pulse
-      - wireplumber
-    default_release: "{{ debian_release + '-backports' }}"
+# - name: Install backported packages
+#   ansible.builtin.apt:
+#     state: present
+#     pkg:
+#     - pkg
+#     default_release: "{{ debian_release + '-backports' }}"
 
 # need to be installed after grub package
 - name: Install grub snapshots/rollback support

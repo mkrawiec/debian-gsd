@@ -1,3 +1,3 @@
 ---
-debian_release: bullseye
+debian_release: bookworm
 backported_hardware_stack: false
