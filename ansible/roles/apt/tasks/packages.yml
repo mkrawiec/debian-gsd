@@ -35,6 +35,8 @@
       - fwupd
       - fwupd-amd64-signed
       - gdm3
+      - gjs # com.mattjakeman.ExtensionManager shell version detection
+      - gnome-console
       - gnome-control-center
       - gnome-disk-utility
       - gnome-online-accounts
@@ -42,7 +44,6 @@
       - gnome-software
       - gnome-software-plugin-flatpak
       - gnome-system-monitor
-      - gnome-console
       - grub-efi-amd64
       - grub-efi-amd64-signed
       - gvfs-backends
