@@ -21,3 +21,12 @@
   ansible.builtin.systemd:
     name: systemd-resolved
     enabled: true
+
+- name: Set iwd as backend for NetworkManager
+  community.general.ini_file:
+    path: /etc/NetworkManager/conf.d/wifi_backend.conf
+    section: device
+    option: wifi.backend
+    value: iwd
+    mode: "0644"
+    no_extra_spaces: true

@@ -25,10 +25,11 @@
       - cryptsetup-initramfs
       - cups
       - cups-pk-helper
+      - dbus-broker
       - distrobox
       - earlyoom
       - ffmpegthumbnailer
-      - firewalld
+      - firewall-config
       - fonts-iosevka
       - fonts-noto
       - fonts-noto-color-emoji
@@ -39,6 +40,7 @@
       - gnome-console
       - gnome-control-center
       - gnome-disk-utility
+      - gnome-keyring
       - gnome-online-accounts
       - gnome-session
       - gnome-software
@@ -47,6 +49,7 @@
       - grub-efi-amd64
       - grub-efi-amd64-signed
       - gvfs-backends
+      - iwd # wifi backend for NetworkManager
       - libblockdev-crypto2 # unlock encrypted drives from nautilus
       - libcanberra-pulse # gnome-control-center sound panel
       - libgdk-pixbuf2.0-bin # nautilus thumbnails
@@ -77,7 +80,7 @@
       - unattended-upgrades
       - unzip
       - wireplumber
-      - xdg-desktop-portal-gtk
+      - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
       - xfsprogs
 
