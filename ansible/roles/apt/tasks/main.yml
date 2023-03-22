@@ -6,13 +6,16 @@
     mode: "0644"
 
 - name: Import custom obs repo key
-  ansible.builtin.apt_key:
-    url: "https://download.opensuse.org/repositories/home:/mkrwc:/debian/{{ debian_release }}/Release.key"
-    state: present
+  ansible.builtin.get_url:
+    url: https://build.opensuse.org/projects/home:mkrwc:debian/public_key
+    dest: /etc/apt/keyrings/obs-mkrwc-debian.asc
+    mode: "0644"
+    headers:
+      Accept: '*/*'
 
 - name: Add obs custom repo
   ansible.builtin.apt_repository:
-    repo: "deb https://download.opensuse.org/repositories/home:/mkrwc:/debian/{{ debian_release }} ./"
+    repo: "deb [signed-by=/etc/apt/keyrings/obs-mkrwc-debian.asc] https://download.opensuse.org/repositories/home:/mkrwc:/debian/{{ debian_release }} ./"
     filename: obs-mkrwc-debian
     state: present
 
