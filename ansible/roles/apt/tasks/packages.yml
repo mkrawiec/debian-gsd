@@ -28,9 +28,11 @@
       - distrobox
       - earlyoom
       - ffmpegthumbnailer
+      - firewalld
       - fonts-iosevka
       - fonts-noto
       - fonts-noto-color-emoji
+      - fwupd
       - fwupd-amd64-signed
       - gdm3
       - gnome-control-center

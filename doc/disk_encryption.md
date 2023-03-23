@@ -29,4 +29,6 @@ vi /mnt/etc/crypttab
 
 mkdir -p /mnt/etc/keys
 cp /tmp/lukskey /mnt/etc/keys/main.key
+
+udevadm trigger # refresh identifiers in /dev/disk/by-uuid (fixes grub-btrfs installation)
 ```

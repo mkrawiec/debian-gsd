@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 set -ex
-export LC_ALL=C
+export LC_ALL=C.utf-8
 export ANSIBLE_LOG_PATH=/var/log/ansible_run.log
 
 ansible-playbook \
