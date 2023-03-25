@@ -1,8 +1,8 @@
-siduction-btrfs (0.1.0-gsd1) stable; urgency=medium
+siduction-btrfs (0.1~git20230324.315343-gsd1) stable; urgency=medium
 
-  * Import as debian-gsd package
+  * Sync with latest git version
 
- -- Maciek Krawiec <142805+mkrawiec@users.noreply.github.com>  Mon, 06 Mar 2023 19:00:06 +0100
+ -- Maciek Krawiec <142805+mkrawiec@users.noreply.github.com>  Fri, 24 Mar 2023 15:13:44 +0100
 
 siduction-btrfs (0.1.0-2) unstable; urgency=medium
 
