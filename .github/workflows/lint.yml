@@ -9,6 +9,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Lint ansible files
-        uses: ansible-community/ansible-lint-action@v6
+        uses: ansible-community/ansible-lint-action@v6.14.4
         with:
           path: "ansible/"
