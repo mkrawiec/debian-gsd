@@ -27,7 +27,7 @@
 
 - name: Init snapper config
   ansible.builtin.copy:
-    src: /etc/snapper/config-templates/default
+    src: /usr/share/snapper/config-templates/default
     dest: /etc/snapper/configs/root
     force: false
     mode: "0644"

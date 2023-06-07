@@ -1,10 +1,10 @@
 Source: adw-gtk-theme
 Section: x11
 Priority: optional
-Maintainer: Maciej Krawiec <maciek@unknown>
+Maintainer: Maciej Krawiec <142805+mkrawiec@users.noreply.github.com>
 Build-Depends: debhelper-compat (= 13), meson, sassc
 Standards-Version: 4.5.1
-Homepage: https://github.com/nana-4/materia-theme
+Homepage: https://github.com/lassekongo83/adw-gtk3
 
 Package: adw-gtk-theme
 Architecture: all

@@ -25,27 +25,31 @@
       - cryptsetup-initramfs
       - cups
       - cups-pk-helper
+      - dbus-broker
       - distrobox
       - earlyoom
       - ffmpegthumbnailer
-      - firewalld
+      - firewall-config
       - fonts-iosevka
       - fonts-noto
       - fonts-noto-color-emoji
       - fwupd
       - fwupd-amd64-signed
       - gdm3
+      - gjs # com.mattjakeman.ExtensionManager shell version detection
+      - gnome-console
       - gnome-control-center
       - gnome-disk-utility
+      - gnome-keyring
       - gnome-online-accounts
       - gnome-session
       - gnome-software
       - gnome-software-plugin-flatpak
       - gnome-system-monitor
-      - gnome-terminal
       - grub-efi-amd64
       - grub-efi-amd64-signed
       - gvfs-backends
+      - wpasupplicant # backend for NetworkManager
       - libblockdev-crypto2 # unlock encrypted drives from nautilus
       - libcanberra-pulse # gnome-control-center sound panel
       - libgdk-pixbuf2.0-bin # nautilus thumbnails
@@ -59,6 +63,7 @@
       - network-manager
       - network-manager-openvpn-gnome
       - openssh-client
+      - pipewire-pulse
       - plymouth-themes
       - powermgmt-base # for unattended-upgrades
       - powertop
@@ -67,23 +72,24 @@
       - smartmontools
       - snapper
       - sudo
+      - systemd-resolved
       - systemd-timesyncd
       - systemd-zram-generator
       - tlp-rdw
       - uidmap # distrobox, creating new boxes
       - unattended-upgrades
       - unzip
-      - xdg-desktop-portal-gtk
+      - wireplumber
+      - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
       - xfsprogs
 
-- name: Install backported packages
-  ansible.builtin.apt:
-    state: present
-    pkg:
-      - pipewire-pulse
-      - wireplumber
-    default_release: "{{ debian_release + '-backports' }}"
+# - name: Install backported packages
+#   ansible.builtin.apt:
+#     state: present
+#     pkg:
+#     - pkg
+#     default_release: "{{ debian_release + '-backports' }}"
 
 # need to be installed after grub package
 - name: Install grub snapshots/rollback support

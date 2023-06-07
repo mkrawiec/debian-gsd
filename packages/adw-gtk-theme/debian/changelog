@@ -1,3 +1,9 @@
+adw-gtk-theme (4.4-gsd1) stable; urgency=medium
+
+  * New upstream release
+
+ -- Maciek Krawiec <142805+mkrawiec@users.noreply.github.com>  Thu, 23 Mar 2023 10:29:00 +0100
+
 adw-gtk-theme (3.3-gsd1) stable; urgency=medium
 
   * Initial release
