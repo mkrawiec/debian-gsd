@@ -12,6 +12,14 @@
       - linux-image-amd64
     default_release: "{{ backported_hardware_stack | ternary(debian_release + '-backports', debian_release) }}"
 
+- name: Install backported packages
+  ansible.builtin.apt:
+    state: present
+    pkg:
+      - pipewire-pulse
+      - wireplumber
+    default_release: "{{ debian_release + '-backports' }}"
+
 - name: Install packages
   ansible.builtin.apt:
     state: present
@@ -27,7 +35,6 @@
       - cups-pk-helper
       - dbus-broker
       - distrobox
-      - earlyoom
       - ffmpegthumbnailer
       - firewall-config
       - fonts-iosevka
@@ -58,12 +65,12 @@
       - locales
       - malcontent # gnome-control-center applications panel
       - mesa-utils
+      - mesa-vulkan-drivers
       - nautilus
       - nautilus-share
       - network-manager
       - network-manager-openvpn-gnome
       - openssh-client
-      - pipewire-pulse
       - plymouth-themes
       - powermgmt-base # for unattended-upgrades
       - powertop
@@ -72,6 +79,7 @@
       - smartmontools
       - snapper
       - sudo
+      - systemd-oom
       - systemd-resolved
       - systemd-timesyncd
       - systemd-zram-generator
@@ -79,17 +87,11 @@
       - uidmap # distrobox, creating new boxes
       - unattended-upgrades
       - unzip
-      - wireplumber
       - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
+      - xdg-utils
       - xfsprogs
-
-# - name: Install backported packages
-#   ansible.builtin.apt:
-#     state: present
-#     pkg:
-#     - pkg
-#     default_release: "{{ debian_release + '-backports' }}"
+      - wl-clipboard
 
 # need to be installed after grub package
 - name: Install grub snapshots/rollback support
