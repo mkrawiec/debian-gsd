@@ -12,14 +12,6 @@
       - linux-image-amd64
     default_release: "{{ backported_hardware_stack | ternary(debian_release + '-backports', debian_release) }}"
 
-- name: Install backported packages
-  ansible.builtin.apt:
-    state: present
-    pkg:
-      - pipewire-pulse
-      - wireplumber
-    default_release: "{{ debian_release + '-backports' }}"
-
 - name: Install packages
   ansible.builtin.apt:
     state: present
@@ -35,6 +27,7 @@
       - cups-pk-helper
       - dbus-broker
       - distrobox
+      - evolution-data-server
       - ffmpegthumbnailer
       - firewall-config
       - fonts-iosevka
@@ -79,7 +72,7 @@
       - smartmontools
       - snapper
       - sudo
-      - systemd-oom
+      - systemd-oomd
       - systemd-resolved
       - systemd-timesyncd
       - systemd-zram-generator
@@ -100,6 +93,14 @@
     pkg:
       - grub-btrfs
       - siduction-btrfs
+
+- name: Install backported pipewire
+  ansible.builtin.apt:
+    state: latest
+    pkg:
+      - pipewire-pulse
+      - wireplumber
+    default_release: "{{ debian_release + '-backports' }}"
 
 # installed separately since 3rd party server can fail
 - name: Install ms core fonts
