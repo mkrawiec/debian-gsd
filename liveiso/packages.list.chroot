@@ -6,21 +6,24 @@ user-setup
 
 # firmware
 amd64-microcode
-firmware-iwlwifi
-firmware-realtek
 firmware-atheros
+firmware-intel-misc
+firmware-iwlwifi
 firmware-linux-free
 firmware-linux-nonfree
+firmware-mediatek
+firmware-realtek
 intel-microcode
 
 # util
-bash-completion
 arch-install-scripts
+bash-completion
 btrfs-progs
 connman
 cryptsetup
 curl
 debootstrap
 dosfstools
+pciutils
 wpasupplicant
 xfsprogs
