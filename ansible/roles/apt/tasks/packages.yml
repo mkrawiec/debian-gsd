@@ -68,6 +68,7 @@
       - powermgmt-base # for unattended-upgrades
       - powertop
       - samba
+      - smbclient
       - shim-signed
       - smartmontools
       - snapper
@@ -96,7 +97,7 @@
 
 - name: Install backported pipewire
   ansible.builtin.apt:
-    state: latest
+    state: latest  # noqa package-latest
     pkg:
       - pipewire-pulse
       - wireplumber
