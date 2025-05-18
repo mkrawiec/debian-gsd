@@ -22,12 +22,12 @@
     - org.gnome.Evince
     - org.gnome.Extensions
     - org.gnome.FileRoller
-    - org.gnome.FontManager
+    - org.gnome.font-viewer
     - org.gnome.Geary
     - org.gnome.PowerStats
     - org.gnome.TextEditor
-    - org.gnome.Totem
-    - org.gnome.eog
+    - org.gnome.Showtime
+    - org.gnome.Loupe
     - org.mozilla.firefox
     - org.gtk.Gtk3theme.adw-gtk3
     - org.gtk.Gtk3theme.adw-gtk3-dark
