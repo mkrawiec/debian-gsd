@@ -5,16 +5,25 @@ on:
     inputs:
       version:
         description: "Release version"
-        required: true
+        required: false
 jobs:
   build-liveiso:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
+
+      - name: Set version variable
+        id: set_version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "VERSION=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create build environment
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           tags: debian-gsd:latest
           context: ./liveiso
@@ -28,8 +37,8 @@ jobs:
           run: /image/build.sh
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
-          name: ${{ inputs.version }}
-          tag_name: liveiso-${{ inputs.version }}
+          name: ${{ steps.set_version.outputs.VERSION }}
+          tag_name: liveiso-${{ steps.set_version.outputs.VERSION }}
           files: out/debian-gsd-amd64.hybrid.iso
