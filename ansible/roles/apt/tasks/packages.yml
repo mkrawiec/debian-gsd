@@ -49,7 +49,6 @@
       - grub-efi-amd64
       - grub-efi-amd64-signed
       - gvfs-backends
-      - wpasupplicant # backend for NetworkManager
       - libblockdev-crypto2 # unlock encrypted drives from nautilus
       - libcanberra-pulse # gnome-control-center sound panel
       - libgdk-pixbuf2.0-bin # nautilus thumbnails
@@ -64,13 +63,14 @@
       - network-manager
       - network-manager-openvpn-gnome
       - openssh-client
+      - pipewire-pulse
       - plymouth-themes
       - powermgmt-base # for unattended-upgrades
       - powertop
       - samba
-      - smbclient
       - shim-signed
       - smartmontools
+      - smbclient
       - snapper
       - sudo
       - systemd-oomd
@@ -81,11 +81,13 @@
       - uidmap # distrobox, creating new boxes
       - unattended-upgrades
       - unzip
+      - wireplumber
+      - wl-clipboard
+      - wpasupplicant # backend for NetworkManager
       - xdg-desktop-portal-gnome
       - xdg-user-dirs-gtk
       - xdg-utils
       - xfsprogs
-      - wl-clipboard
 
 # need to be installed after grub package
 - name: Install grub snapshots/rollback support
@@ -94,14 +96,6 @@
     pkg:
       - grub-btrfs
       - siduction-btrfs
-
-- name: Install backported pipewire
-  ansible.builtin.apt:
-    state: latest  # noqa package-latest
-    pkg:
-      - pipewire-pulse
-      - wireplumber
-    default_release: "{{ debian_release + '-backports' }}"
 
 # installed separately since 3rd party server can fail
 - name: Install ms core fonts
