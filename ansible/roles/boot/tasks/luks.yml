@@ -3,10 +3,10 @@
   ansible.builtin.find:
     paths: /etc/keys
     patterns: "*.key"
-  register: keyfiles
+  register: boot_keys
 
 - name: Enable disk encryption
-  when: keyfiles.files | length > 0
+  when: boot_keys.files | length > 0
   block:
     - name: Enable grub luks support
       ansible.builtin.lineinfile:
@@ -19,7 +19,7 @@
         path: "{{ item.path }}"
         state: file
         mode: "0400"
-      with_items: "{{ keyfiles.files }}"
+      with_items: "{{ boot_keys.files }}"
 
     - name: Change permission policy for initramfs
       ansible.builtin.lineinfile:

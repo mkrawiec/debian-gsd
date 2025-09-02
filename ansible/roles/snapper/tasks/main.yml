@@ -21,8 +21,8 @@
 
 - name: Create qgroup for cleanup algorithms
   ansible.builtin.command: btrfs qgroup create 1/0 /
-  register: qgroup_result
-  changed_when: qgroup_result.rc == 1
+  register: snapper_qgroup_result
+  changed_when: snapper_qgroup_result.rc == 1
   failed_when: false
 
 - name: Init snapper config
