@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Lint ansible files
-        uses: ansible-community/ansible-lint-action@v6.11.0
+        uses: ansible/ansible-lint@v25
         with:
-          path: "ansible/"
+          working_directory: "ansible/"
