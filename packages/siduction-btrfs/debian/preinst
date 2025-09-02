@@ -1,0 +1,60 @@
+#!/usr/bin/bash
+#
+# preinst script for #PACKAGE#
+#
+
+set -e
+
+###################################
+### Begin remove obsolet files. ###
+# From version 0.3.0, some previously used files must be removed.
+# This section will be removed in Q4 2026 at the latest.
+
+if [ -e /etc/systemd/system/siduction_btrfs.path ]; then
+	rm /etc/systemd/system/siduction_btrfs.path
+fi
+
+if [ -e /etc/systemd/system/siduction_btrfs.timer ]; then
+	rm /etc/systemd/system/siduction_btrfs.timer
+fi
+
+if [ -e /etc/systemd/system/multi-user.target.wants/siduction_btrfs.timer ]; then
+	rm /etc/systemd/system/multi-user.target.wants/siduction_btrfs.timer
+fi
+
+if [ -e /usr/lib/systemd/system/siduction_btrfs.timer ]; then
+	rm /usr/lib/systemd/system/siduction_btrfs.timer
+fi
+
+if [ -e /usr/share/siduction/test-btrfs-default.sh ]; then
+	rm /usr/share/siduction/test-btrfs-default.sh
+fi
+
+if [ -e /etc/grub.d/09_siduction-btrfs ]; then
+	rm /etc/grub.d/09_siduction-btrfs
+fi
+
+if [ -e /etc/grub.d/10_linux ]; then
+	chmod 755 /etc/grub.d/10_linux
+fi
+
+#### End remove obsolet files. ####
+###################################
+
+
+# For the new systemd units we need a file with the name
+# of the file system type of the root directory.
+fstypename="/usr/share/siduction/$(findmnt -n -o FSTYPE /)"
+touch "$fstypename"
+echo "DO NOT REMOVE THIS FILE!" >> "$fstypename"
+echo "It is required by the siduction_btrfs systemd units." >> "$fstypename"
+
+# Now we use the snapper plugin dir.
+if [ ! -d /usr/lib/snapper/plugins/ ]; then
+	mkdir /usr/lib/snapper/plugins
+fi
+
+#DEBHELPER#
+
+exit 0
+

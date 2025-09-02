@@ -1,4 +1,5 @@
-version=4
-opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*@ARCHIVE_EXT@)%@PACKAGE@-$1%" \
-      https://github.com/Antynea/grub-btrfs/tags \
-      (?:.*?/)?v?@ANY_VERSION@@ARCHIVE_EXT@
+Version: 5
+
+Source: https://github.com/Antynea/grub-btrfs/tags
+Matching-Pattern: (?:.*?/)?v?@ANY_VERSION@@ARCHIVE_EXT@
+Filenamemangle: s%(?:.*?)?v?(\d[\d.]*@ARCHIVE_EXT@)%@PACKAGE@-$1%

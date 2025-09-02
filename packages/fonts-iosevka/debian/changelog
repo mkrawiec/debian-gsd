@@ -1,3 +1,9 @@
+fonts-iosevka (33.2.9-gsd1) stable; urgency=medium
+
+  * New upstream version
+
+ -- Maciej Krawiec <142805+mkrawiec@users.noreply.github.com>  Wed, 03 Sep 2025 19:28:47 +0200
+
 fonts-iosevka (20.0.0-gsd1) stable; urgency=medium
 
   * Udpate upstream version

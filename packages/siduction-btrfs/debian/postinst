@@ -1,14 +1,15 @@
-#! /bin/bash
+#!/usr/bin/bash
 #
 # postinst script for #PACKAGE#
 #
 
 set -e
 
-if [ ! $( systemctl status siduction_btrfs.path | awk '/masked/{print $2}' 2>/dev/null) ]; then
-    systemctl enable siduction_btrfs.timer siduction_btrfs.path
-fi
+exec $(systemctl daemon-reload)
+
+exec $(systemctl enable --now siduction_btrfs.path)
 
 #DEBHELPER#
 
 exit 0
+
