@@ -5,6 +5,13 @@
 
 set -e
 
+# For the new systemd units we need a file with the name
+# of the file system type of the root directory.
+fstypename="/usr/share/siduction/$(findmnt -n -o FSTYPE /)"
+touch "$fstypename"
+echo "DO NOT REMOVE THIS FILE!" > "$fstypename"
+echo "It is required by the siduction_btrfs systemd units." >> "$fstypename"
+
 exec $(systemctl daemon-reload)
 
 exec $(systemctl enable --now siduction_btrfs.path)

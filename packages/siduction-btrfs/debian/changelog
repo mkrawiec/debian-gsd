@@ -1,6 +1,13 @@
+siduction-btrfs (0.3.0-gsd3) stable; urgency=medium
+
+  * Move creating btrfs condition file to postinst, after
+    /usr/share/siduction exists
+
+ -- Maciej Krawiec <142805+mkrawiec@users.noreply.github.com>  Wed, 03 Sep 2025 22:56:47 +0200
+
 siduction-btrfs (0.3.0-gsd2) stable; urgency=medium
 
-  * Remove tempering with os-release during preint
+  * Remove tempering with os-release during preinst
 
  -- Maciej Krawiec <142805+mkrawiec@users.noreply.github.com>  Wed, 03 Sep 2025 21:22:54 +0200
 
