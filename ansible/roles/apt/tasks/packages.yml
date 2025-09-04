@@ -49,7 +49,7 @@
       - grub-efi-amd64
       - grub-efi-amd64-signed
       - gvfs-backends
-      - libblockdev-crypto2 # unlock encrypted drives from nautilus
+      - libblockdev-crypto3 # unlock encrypted drives from nautilus
       - libcanberra-pulse # gnome-control-center sound panel
       - libgdk-pixbuf2.0-bin # nautilus thumbnails
       - libpam-gnome-keyring # auto-unlock keyring
