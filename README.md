@@ -2,7 +2,7 @@
 
 # debian-gsd
 
-![debian-gsd screenshot](https://user-images.githubusercontent.com/142805/186964547-48666722-5bbc-41e6-b930-8078345156d4.png)
+![debian-gsd screenshot](https://github.com/user-attachments/assets/cdea9b67-5cec-4606-96e7-dcbaacc2f70c)
 
 </div>
 
