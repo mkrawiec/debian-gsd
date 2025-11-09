@@ -7,6 +7,7 @@
       - firmware-iwlwifi
       - firmware-realtek
       - firmware-atheros
+      - firmware-mediatek
       - firmware-linux
       - intel-microcode
       - linux-image-amd64
@@ -76,6 +77,7 @@
       - systemd-oomd
       - systemd-resolved
       - systemd-timesyncd
+      - systemd-cryptsetup
       - systemd-zram-generator
       - tlp-rdw
       - uidmap # distrobox, creating new boxes
@@ -88,6 +90,7 @@
       - xdg-user-dirs-gtk
       - xdg-utils
       - xfsprogs
+      - zstd
 
 # need to be installed after grub package
 - name: Install grub snapshots/rollback support
